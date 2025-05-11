@@ -1,6 +1,7 @@
+
 def game_dict():
-    return {
-        "home": {
+    return {            
+         "home": {
             "team_name": "Cleveland Cavaliers",
             "colors": ["Wine", "Gold"],
             "players": [
@@ -182,3 +183,64 @@ def game_dict():
             ]
         }
     }
+
+def num_points_scored(player_name):
+    game = game_dict()
+    for team in game.values():
+        for player in team["players"]:
+            if player["name"] == player_name:
+                return player["points_per_game"]
+def num_points_per_game(player_name):
+    game = game_dict()
+    for team in game.values():
+        for player in team["players"]:
+            if player["name"] == player_name:
+                return player["points_per_game"]
+def team_colors(team_name):
+    game = game_dict()
+    for team in game.values():
+        if team["team_name"] == team_name:
+            return team["colors"]
+def team_names():
+    game = game_dict()
+    return [team["team_name"] for team in game.values()]
+def player_numbers(team_name):
+    game =game_dict()
+    for team in game.values():
+        if team["team_name"] == team_name:
+            return [player["number"] for player in team["players"]]
+def player_stats(player_name):
+    game = game_dict()
+    for team in game.values():
+        for player in team["players"]:
+            if player["name"] == player_name:
+                return player
+            
+def player_age(player_name):
+    game = game_dict()
+    for team in game.values():
+        for player in team["players"]:
+            if player["name"] == player_name:
+                return player["age"]
+            
+def average_rebounds_by_shoe_brand():
+    brand_rebounds = {}
+    brand_counts = {}
+
+    for team in game_dict().values():
+        for player in team["players"]:
+            brand = player["shoe_brand"]
+            rebounds = player["rebounds_per_game"]
+            if brand in brand_rebounds:
+                brand_rebounds[brand] += rebounds
+                brand_counts[brand] += 1
+            else:
+                brand_rebounds[brand] = rebounds
+                brand_counts[brand] = 1
+
+    for brand in brand_rebounds:
+        average = brand_rebounds[brand] / brand_counts[brand]
+        print(f"{brand}:  {average:.2f}")
+
+
+        
